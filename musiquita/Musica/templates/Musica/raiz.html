@@ -1,0 +1,145 @@
+{%extends 'index.html'%}
+{%load static%}
+
+{%block content%}
+
+<section class="wrapper style2">
+    <div class="inner">
+        <header>
+            <h2>Canciones Existentes</h2>
+            <p>DISFRUTA DE LA MEJOR MUSICA EN VEGA.</p>
+        </header>
+        <!-- Tabbed Video Section -->
+        <div class="flex flex-tabs">
+            <ul class="tab-list">
+                <li><a href="#" data-tab="tab-4" class="active">TODO</a></li>
+                <li><a href="#" data-tab="tab-1">MUSICA POP</a></li>
+                <li><a href="#" data-tab="tab-2">MUSICA ROCK</a></li>
+                <li><a href="#" data-tab="tab-3">MUSICA ALTERNATIVA</a></li>
+            </ul>
+            <div class="tabs">
+                <div class="tab tab-4 flex flex-2 active">
+                    <!-- Video Thumbnail -->
+                    {%for i in info%}
+                    {% if i.cancion.imagen %}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{{i.cancion.imagen.url}}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {%else%}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{%static 'img/pic01.jpg'%}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {% endif %}
+                    {%endfor%}
+                    <!-- Video Thumbnail -->
+                </div>
+                <!-- Tab 1 -->
+                <div class="tab tab-1 flex flex-2 active">
+                    <!-- Video Thumbnail -->
+                    {%for i in infopop%}
+                    {% if i.cancion.imagen %}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{{i.cancion.imagen.url}}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {%else%}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{%static 'img/pic01.jpg'%}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {% endif %}
+                    {%endfor%}
+                    <!-- Video Thumbnail -->
+                </div>
+
+                <div class="tab tab-2 flex flex-2 active">
+                    <!-- Video Thumbnail -->
+                    {%for i in inforock%}
+                    {% if i.cancion.imagen %}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{{i.cancion.imagen.url}}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {%else%}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{%static 'img/pic01.jpg'%}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {% endif %}
+                    {%endfor%}
+                    <!-- Video Thumbnail -->
+                </div>
+
+                <div class="tab tab-3 flex flex-2 active">
+                    <!-- Video Thumbnail -->
+                    {%for i in infoalternativo%}
+                    {% if i.cancion.imagen %}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{{i.cancion.imagen.url}}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {%else%}
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{%static 'img/pic01.jpg'%}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                        </div>
+                        <a href="{{i.cancion.url}}" class="link">{{i.cancion.titulo}}</a>
+                    </div>
+                    {% endif %}
+                    {%endfor%}
+                    <!-- Video Thumbnail -->
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{%endblock%}
+
+{%block js%}
+
+{%endblock js%}

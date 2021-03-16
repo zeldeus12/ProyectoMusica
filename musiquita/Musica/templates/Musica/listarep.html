@@ -1,0 +1,101 @@
+{%extends 'index.html'%}
+{%load static%}
+
+{%block content%}
+     <br>-
+    <br>
+    <h2>BIENVENIDO <span >{{user}}</span> A TU LISTA DE REPRODUCCION</h2>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{form.as_p}}
+        <button type="submit">ENVIAR</button>
+
+
+</form>
+
+
+<section class="wrapper style2">
+    <div class="inner">
+        <header>
+            <h2>canciones de tu lista de reproduccion</h2>
+        </header>
+        <!-- Tabbed Video Section -->
+        <div class="flex flex-tabs">
+            <div class="tabs">
+
+                <!-- Tab 1 -->
+                <div class="tab tab-1 flex flex-4 active">
+                    <!-- Video Thumbnail -->
+                    {%for i in data%}
+                    {% if i.cancionL.cancion.imagen %}
+
+                    <div class="video col">
+                        <div class="image fit">
+                            <img src="{{i.cancionL.cancion.imagen.url}}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                            <a href="{{i.cancionL.cancion.url}}" class="link">{{i.cancionL.cancion.titulo}}</a>
+                        </div>
+
+                         <div class="arrow">
+                                <a href="#" onclick="eliminar({{i.id}})"><button class="btn btn-danger">ELIMINAR</button></a>
+                            </div>
+                    </div>
+                    {%else%}
+                     <div class="video col">
+                        <div class="image fit">
+                             <img src="{%static 'img/pic01.jpg'%}" width="200px" height="200px">
+                            <div class="arrow">
+                                <div class="icon fa-play"></div>
+                            </div>
+                            <a href="{{i.cancionL.cancion.url}}" class="link">{{i.cancionL.cancion.titulo}}</a>
+                        </div>
+                            <div class="arrow">
+                                <a href="#" onclick="eliminar({{i.id}})"><button class="btn btn-danger">ELIMINAR</button></a>
+                            </div>
+                    </div>
+
+
+                    {% endif %}
+
+                    {%endfor%}
+                    <!-- Video Thumbnail -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{%endblock%}
+
+{%block js%}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+ function eliminar(id){
+   Swal.fire({
+  icon: 'warning',
+  title: 'Seguro que deseas eliminar este dato',
+  text: 'No podras deshacer esta accion',
+  showConfirmButton: true,
+  showCancelButton: true,
+  confirmButtonColor: 'darkred',
+}).then(function(result){
+    if(result.isConfirmed){
+    window.location.href = '/eliminar/'+id+'/'
+    }
+    })
+
+   }
+   </script>
+
+{%endblock js%}

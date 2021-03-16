@@ -1,0 +1,29 @@
+<div class="modal-dialog modal-lg" id="ocul2" role="document">
+    <div class="card">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">CREAR AUTOR</h2>
+        </div>
+        <form method="post" action="{% url 'mod' %}" enctype="multipart/form-data">
+             {% csrf_token %}
+            {{AUTOR.as_p}}
+        <button type="submit" class="btn btn-primary">ENVIAR</button>
+        </form>
+    </div>
+    <button class="close" ONCLICK="ocultar2()">
+                <spam aria-hidden="true" >CERRAR</spam>
+    </button>
+        </div>
+</div>
+
+<script>
+   function ocultar2() {
+    var x = document.getElementById("ocul2");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+</script>

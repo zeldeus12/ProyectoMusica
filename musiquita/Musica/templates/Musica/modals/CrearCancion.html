@@ -1,0 +1,58 @@
+<div class="modal-dialog modal-lg" id="ocul" role="document">
+    <div class="card">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">CREAR CANCION SIN GENERO</h2>
+
+
+        </div>
+        <form method="post" action="{% url 'mod2' %}" enctype="multipart/form-data">
+
+
+            {% csrf_token %}
+    <tr><br>
+<br>
+<br>
+
+        <th><label>TITULO:</label>
+        </th>
+        <td>
+            {{cancion.titulo}}
+        </td>
+    <tr>
+        <th><label for="id_url">URL:</label></th>
+        <td>
+            <input type="text" name="url" maxlength="200" id="id_url"></td>
+
+
+
+        <label for="id_imagen" class="subir">
+            <i class="fas fa-cloud-upload-alt"></i> Subir archivo
+        </label>
+        <input type="file" onchange='cambiar()'  name="imagen" accept="image/*" id="id_imagen" style="display: none;">
+        <div id="info"></div>
+
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">ENVIAR</button>
+
+        </form>
+
+    </div>
+    <button class="close" ONCLICK="ocultar()">
+                <spam aria-hidden="true" >CERRAR</spam>
+    </button>
+        </div>
+</div>
+
+<script>
+   function ocultar() {
+    var x = document.getElementById("ocul");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+</script>

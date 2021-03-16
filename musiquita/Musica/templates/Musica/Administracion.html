@@ -1,0 +1,203 @@
+{%extends 'index.html'%}
+{%load static%}
+
+{%block contenthr%}
+
+
+{%endblock %}
+
+{%block content%}
+<br><br>
+<section id="banner">
+    <div class="inner">
+        <header>
+            <h1>MusLyrics VeGa</h1>
+        </header>
+        <a href="#main" class="button big alt scrolly">Bienvenido Administrador {{user}}</a>
+    </div>
+
+</section>
+
+<br><br>
+
+<a onclick="abrirmodaledit2('{% url 'mod2' %}')">
+    <button type="button" class="btn btn-primary"> CREAR NUEVA CANCION</button>
+</a>
+
+<a onclick="abrirmodaledit('{% url 'mod' %}')">
+    <button type="button" class="btn btn-primary"> CREAR NUEVO AUTOR</button>
+</a>
+
+<a onclick="abrirmodaledit3('{% url 'mod3' %}')">
+    <button type="button" class="btn btn-primary"> CREAR NUEVA CANCION-AUTOR</button>
+</a>
+
+<div class="modal fade" id="editar" role="dialog"></div>
+
+<div class="modal fade" id="editar2" role="dialog"></div>
+
+<div class="modal fade" id="editar3" role="dialog"></div>
+
+<BR>
+<div class="tab tab-1 flex flex-3 active">
+</div>            <!-- Video Thumbnail -->
+
+<br><br>
+
+<H3>PANEL DE ADMINITRACION</H3>
+<button onclick="tabas()">OCULTAR TABLA DE CANCIONES CON AUTOR</button>
+<div id="tabas">
+    <table class="colapsado" border="1">
+        <H3>TABLA DE CANCIONES CON AUTOR</H3>
+        <thead>
+        <tr>
+            <th scope="col">Cancion</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Caratula</th>
+            <th scope="col">Genero</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for i in cancionesT%}
+        <tr>
+            <th>{{i.cancion.titulo}}</th>
+            <td>{{i.autor.nombre}}</td>
+            {% if i.cancion.imagen %}
+            <td><img src="{{i.cancion.imagen.url}}" width="40px" height="40px"></td>
+            {%else%}
+            <td><img src="{%static 'img/pic01.jpg'%}" width="40px" height="40px">ESTA CARATULA ES DEFAULT</td>
+            {%endif%}
+            <td>{{i.genero}}</td>
+        </tr>
+        {%endfor%}
+
+        </tbody>
+    </table>
+    </table>
+</div>
+<br><br>
+<button onclick="tabas2()">OCULTAR TABLAS AUTORES Y CANCIONES</button>
+<div id="tabas2">
+    <table class="colapsado" border="1">
+        <H3>TABLA DE AUTORES Y CANCIONES</H3>
+        <thead>
+        <tr>
+            <th scope="col">Autores</th>
+            <th scope="col">Canciones</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <th>
+                <table class="colapsado" border="1">
+                    <H3>TABLA DE AUTORES</H3>
+                    <thead>
+                    <tr>
+                        <th scope="col">Autores</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {%for i in Autor%}
+                    <tr>
+                        <th>{{i.nombre}}</th>
+                    </tr>
+                    {%endfor%}
+
+
+                    </tbody>
+                </table>
+            </th>
+            <td>
+                <table class="colapsado" border="1">
+                    <H3>TABLA DE CANCIONES</H3>
+                    <thead>
+                    <tr>
+                        <th scope="col">Canciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {%for i in canciones%}
+                    <tr>
+                        <th>{{i.titulo}}</th>
+                    </tr>
+                    {%endfor%}
+
+
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+
+{%endblock%}
+
+{%block js%}
+<!--<script src="{%static 'js/hola.js'%}"></script>-->
+<script>
+function cambiar(){
+    var pdrs = document.getElementById('id_imagen').files[0].name;
+    document.getElementById('info').innerHTML = pdrs;
+}
+
+
+</script>
+
+
+<script>
+
+    function abrirmodaledit3(url){
+    $('#editar3').load(url, function(){
+    $(this).modal('show');
+
+    });
+    }
+
+    function abrirmodaledit(url){
+    $('#editar').load(url, function(){
+    $(this).modal('show');
+
+    });
+    }
+
+     function abrirmodaledit2(url){
+    $('#editar2').load(url, function(){
+    $(this).modal('show');
+
+    });
+    }
+
+
+</script>
+
+<script>
+   function tabas() {
+    var x = document.getElementById("tabas");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+   function tabas2() {
+    var x = document.getElementById("tabas2");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+
+
+</script>
+{%endblock js%}
